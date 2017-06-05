@@ -4,14 +4,7 @@ import pytest
 
 def test_valid_struct_triangle():
     triangle = [[6], [3, 5], [9, 7, 1], [4, 6, 8, 4]]
-    assert hellstriangle.valid_struct_triangle(triangle)
-
-
-def test_invalid_struct_triangle():
-    triangle = [[6], [3, 5], [9, 7], [4, 6, 8, 4]]
-    with pytest.raises(ValueError) as error:
-        hellstriangle.valid_struct_triangle(triangle)
-    assert "Triangle Struct Invalid" == str(error.value)
+    assert hellstriangle.valid_struct_triangle(lambda x: x)(triangle)
 
 
 @pytest.mark.parametrize("values", [
@@ -33,3 +26,14 @@ def test_max_nearest_element(values):
 def test_maximum_helltriangle(values):
     triangle, result = values
     assert hellstriangle.maximum_top_to_bottom(triangle) == result
+
+
+@pytest.mark.parametrize("function", [
+    hellstriangle.maximum_top_to_bottom,
+    hellstriangle.valid_struct_triangle(lambda x: x)
+])
+def test_decorator_valid_struct_triangle_function(function):
+    triangle = [[6], [3, 5], [9, 7], [4, 6, 8, 4]]
+    with pytest.raises(ValueError) as error:
+        function(triangle)
+    assert "Triangle Struct Invalid" == str(error.value)

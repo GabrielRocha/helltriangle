@@ -1,10 +1,12 @@
-def valid_struct_triangle(triangle):
-    size = 0
-    for array in triangle:
-        if not len(array) == size + 1:
-            raise ValueError("Triangle Struct Invalid")
-        size += 1
-    return True
+def valid_struct_triangle(func):
+    def valid(triangle):
+        size = 0
+        for array in triangle:
+            size += 1
+            if not len(array) == size:
+                raise ValueError("Triangle Struct Invalid")
+        return func(triangle)
+    return valid
 
 
 def max_nearest_element(index, array):
@@ -13,6 +15,7 @@ def max_nearest_element(index, array):
     return array[0]
 
 
+@valid_struct_triangle
 def maximum_top_to_bottom(triangle):
     index = 0
     elements = triangle[0]
