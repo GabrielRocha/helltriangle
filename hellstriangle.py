@@ -1,12 +1,5 @@
-def valid_struct_triangle(func):
-    def valid(triangle):
-        size = 0
-        for array in triangle:
-            size += 1
-            if not len(array) == size:
-                raise ValueError("Triangle Struct Invalid")
-        return func(triangle)
-    return valid
+from validate import valid_struct_triangle
+import random
 
 
 def max_nearest_element(index, array):
@@ -23,3 +16,12 @@ def maximum_top_to_bottom(triangle):
         elements.append(max_nearest_element(index, array))
         index = array.index(elements[-1])
     return sum(elements)
+
+
+def generate_random_triangle(steps=2):
+    len_elements_list = 1
+    triangle = list()
+    for i in range(steps):
+        triangle.append([random.randint(1, 10) for index in range(len_elements_list)])
+        len_elements_list += 1
+    return triangle
