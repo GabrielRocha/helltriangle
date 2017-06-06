@@ -20,8 +20,6 @@ def maximum_top_to_bottom(triangle):
 
 def generate_random_triangle(steps=2):
     len_elements_list = 1
-    triangle = list()
     for i in range(steps):
-        triangle.append([random.randint(1, 10) for index in range(len_elements_list)])
+        yield [random.randint(1, 10) for index in range(len_elements_list)]
         len_elements_list += 1
-    return triangle
