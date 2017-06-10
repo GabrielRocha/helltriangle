@@ -23,6 +23,11 @@ example = [[6],[3,5],[9,7,1],[4,6,8,4]]
 
 ## Dev
 
+Install Libs
+```shell
+$ pip install -r requirements.txt
+```
+
 The method maximum_top_to_bottom receive and validate the triangle array by your struct. If the struct is not valid an exception message will appear.
 
 ```python
